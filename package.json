@@ -1,0 +1,20 @@
+{
+	"name": "timeless-helpers-app",
+	"version": "1.0.0",
+	"author": "peter bobka",
+	"license": "ISC",
+	"main": "index.js",
+	"scripts": {
+		"dev": "parcel serve index.html --port 8888",
+		"build": "parcel build --out-dir docs/ --public-url . index.html"
+	},
+	"dependencies": {
+		"vue": "^2.6.11",
+		"vue-hot-reload-api": "^2.3.4",
+		"vue-router": "^3.1.5"
+	},
+	"devDependencies": {
+		"@vue/component-compiler-utils": "^3.1.1",
+		"vue-template-compiler": "^2.6.11"
+	}
+}
