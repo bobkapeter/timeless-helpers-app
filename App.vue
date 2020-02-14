@@ -1,7 +1,10 @@
 <template>
 	<div id="app">
 		<div class="view-container">
-			<transition name="fade" mode="out-in">
+			<transition
+				name="fade"
+				mode="out-in"
+			>
 				<router-view></router-view>
 			</transition>
 		</div>
@@ -54,9 +57,12 @@ body {
 	font-family: "Open Sans", sans-serif;
 }
 
+button {
+	outline: none;
+}
+
 #app {
 	width: 100%;
-	min-width: 1000px;
 	height: 100vh;
 	min-height: 400px;
 	overflow: hidden;
@@ -70,7 +76,7 @@ body {
 	height: 100vh;
 	min-height: 400px;
 	overflow: hidden;
-	background-color: rgb(240, 240, 240);
+	background-color: rgb(248, 248, 248);
 	margin: auto;
 	box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.3);
 }
