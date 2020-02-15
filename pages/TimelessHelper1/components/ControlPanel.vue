@@ -3,6 +3,7 @@
 		<div class="control-panel-container">
 			<!-- Toggle Info Screen Button -->
 			<button
+				class="button toggle-button toggle-info-button"
 				@click="toggleInfoScreen"
 				:class="{ active: isInfoScreenVisible }"
 			>
@@ -11,12 +12,13 @@
 
 			<!-- Add New Active Record Button -->
 			<button
-				class="button-save"
+				class="button save-button"
 				@click="addNewActiveRecord"
 			><i class="fas fa-plus"></i></button>
 
 			<!-- Toggle Stored Records Screen Button -->
 			<button
+				class="button toggle-button toggle-stored-records-button"
 				@click="toggleStoredRecordsScreen"
 				:class="{ active: isStoredRecordsScreenVisible }"
 			><i class="fas fa-database"></i></button>
@@ -45,6 +47,9 @@ export default {
 </script>
 
 <style scoped>
+/**
+*** CONTROL PANEL
+*/
 .control-panel {
 	width: 100%;
 	max-width: 800px;
@@ -65,26 +70,66 @@ export default {
 	justify-content: center;
 }
 
-.control-panel button {
+/**
+*** CONTROL PANEL - BUTTON
+*/
+.control-panel .button {
 	cursor: pointer;
 	width: 50px;
 	height: 50px;
 	background: #1e82d2;
 	color: white;
 	font-size: 16px;
-	font-weight: bold;
 	line-height: 50px;
 	margin: 0 0.2em;
 	border: none;
 	border-radius: 50%;
-	transition: background 0.24s linear;
-}
-.control-panel button.active {
-	background: #452087;
 }
 
-.control-panel .button-save {
-	background: #8bc34a;
+/**
+***	TOGGLE BUTTON
+*/
+.toggle-button {
+	position: relative;
+}
+.toggle-button::before {
+	content: "";
+	opacity: 0;
+	width: 36px;
+	height: 36px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0);
+	border: 2px solid white;
+	transition: all 0.24s linear;
+}
+.toggle-button.active::before {
+	opacity: 1;
+	transform: translate(-50%, -50%) scale(1);
+}
+
+/**
+***	TOGGLE INFO SCREEN BUTTON
+*/
+.control-panel .toggle-info-button {
+	background: #1e82d2;
+	background: linear-gradient(180deg, #03a9f4, #1e82d2);
+}
+
+/**
+***	SAVE BUTTON 
+*/
+.control-panel .save-button {
+	background: #4caf50;
 	background: linear-gradient(180deg, #8bc34a, #4caf50);
+}
+
+/**
+***	TOGGLE INFO SCREEN BUTTON
+*/
+.control-panel .toggle-stored-records-button {
+	background: #452087;
+	background: linear-gradient(180deg, #673ab7, #452087);
 }
 </style>
