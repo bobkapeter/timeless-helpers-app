@@ -67,6 +67,10 @@
 				:class="{visible: isStoredRecordsScreenVisible}"
 			>
 				<h2>Uložené záznamy</h2>
+				<div class="buttons">
+					<button @click="copyStoredRecords"><i class="fas fa-copy"></i></button>
+					<button @click="removeStoredRecords"><i class="fas fa-trash-alt"></i></button>
+				</div>
 				<stored-records-table :storedRecords="storedRecords"></stored-records-table>
 			</div>
 		</div>
@@ -108,6 +112,19 @@ export default {
 		this._initStoredRecords();
 	},
 	methods: {
+		_formatTime(time) {
+			if (!time) {
+				return "";
+			}
+
+			const dateFormatOptions = {
+				timeStyle: "medium"
+			};
+			return new Date(time).toLocaleDateString(
+				"sk-SK",
+				dateFormatOptions
+			);
+		},
 		_initLocalStorage() {
 			const storageData = localStorage.getItem("timeless-helper-1");
 
@@ -169,6 +186,41 @@ export default {
 		},
 		removeActiveRecord(index) {
 			this.activeRecords.splice(index, 1);
+		},
+		copyStoredRecords() {
+			const textarea = document.createElement("textarea");
+			let storageData = localStorage.getItem("timeless-helper-1");
+			let text = "";
+
+			if (!storageData) return;
+
+			storageData = JSON.parse(storageData);
+			storageData.records.forEach(({ id, groupSize, timeOfArrival }) => {
+				const time = this._formatTime(timeOfArrival);
+				text += `${id};${time};${groupSize}\n`;
+			});
+
+			textarea.value = text;
+			textarea.setAttribute("readonly", "");
+			textarea.style = { position: "absolute", left: "-9999px" };
+
+			document.body.appendChild(textarea);
+
+			textarea.select();
+			document.execCommand("copy");
+			alert("Záznamy boli skopírované.");
+
+			document.body.removeChild(textarea);
+		},
+		removeStoredRecords() {
+			const confirm1 = confirm(
+				"Naozaj chceš vymazať všetky uložené záznamy ?"
+			);
+
+			if (confirm1) {
+				this.storedRecords.splice(0, this.storedRecords.length);
+				localStorage.removeItem("timeless-helper-1");
+			}
 		},
 		toggleInfoScreen() {
 			this.isStoredRecordsScreenVisible = false;
@@ -261,12 +313,31 @@ main p {
 	transform: translateX(0%);
 }
 .screen-stored-records h2 {
-	font-size: 40px;
+	font-size: 55px;
 	font-weight: 900;
-	line-height: 75px;
 	text-align: center;
 	padding-top: 64px;
-	margin-bottom: 1em;
+	margin-bottom: 0.2em;
+}
+
+.screen-stored-records .buttons {
+	margin: auto;
+	text-align: center;
+	margin-bottom: 2em;
+}
+
+.screen-stored-records .buttons button {
+	cursor: pointer;
+	width: 40px;
+	height: 40px;
+	background-color: white;
+	color: #452087;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 40px;
+	margin: 0 0.2em;
+	border: none;
+	border-radius: 50%;
 }
 
 /**
