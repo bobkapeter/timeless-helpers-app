@@ -68,8 +68,8 @@
 			>
 				<h2>Uložené záznamy</h2>
 				<div class="buttons">
-					<button @click="copyStoredRecords"><i class="fas fa-copy"></i></button>
-					<button @click="removeStoredRecords"><i class="fas fa-trash-alt"></i></button>
+					<button @click="copyStoredRecords"><i class="fas fa-copy"></i>Kopírovať</button>
+					<button @click="removeStoredRecords"><i class="fas fa-trash-alt"></i>Vymazať</button>
 				</div>
 				<stored-records-table :storedRecords="storedRecords"></stored-records-table>
 			</div>
@@ -321,22 +321,36 @@ main p {
 }
 
 .screen-stored-records .buttons {
-	margin: auto;
+	max-width: 600px;
 	text-align: center;
-	margin-bottom: 2em;
+	padding-bottom: 1em;
+	margin: 3em auto 2em auto;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .screen-stored-records .buttons button {
 	cursor: pointer;
+	background-color: rgba(255, 255, 255, 0.1);
+	font-size: 11px;
+	font-weight: bold;
+	font-weight: 700;
+	line-height: 40px;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	padding-right: 3em;
+	margin: 0 0.2em;
+	border: none;
+	border-radius: 40px;
+}
+
+.screen-stored-records .buttons button .fas {
 	width: 40px;
 	height: 40px;
 	background-color: white;
 	color: #452087;
 	font-size: 14px;
-	font-weight: bold;
 	line-height: 40px;
-	margin: 0 0.2em;
-	border: none;
+	margin-right: 1.5em;
 	border-radius: 50%;
 }
 

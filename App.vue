@@ -59,6 +59,7 @@ body {
 
 button {
 	outline: none;
+	font-family: inherit;
 }
 
 #app {
