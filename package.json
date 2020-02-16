@@ -5,8 +5,8 @@
 	"license": "ISC",
 	"main": "index.js",
 	"scripts": {
-		"dev": "parcel serve index.html --port 8888",
-		"build": "parcel build --out-dir docs/ --public-url . index.html"
+		"d": "parcel serve index.html --port 8888",
+		"b": "npx rimraf docs/* && parcel build --out-dir docs/ --public-url . index.html"
 	},
 	"dependencies": {
 		"vue": "^2.6.11",
@@ -16,6 +16,7 @@
 	"devDependencies": {
 		"@vue/component-compiler-utils": "^3.1.1",
 		"cssnano": "^4.1.10",
+		"rimraf": "^3.0.2",
 		"vue-template-compiler": "^2.6.11"
 	}
 }
