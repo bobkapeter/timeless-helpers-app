@@ -2,10 +2,7 @@
 	<div id="timeless-helper-1">
 		<div class="screens">
 			<!-- Informations -->
-			<div
-				class="screen screen-info"
-				:class="{visible: isInfoScreenVisible}"
-			>
+			<div class="screen screen-info" :class="{ visible: isInfoScreenVisible }">
 				<header>
 					<h1>Nadčasový Pomocník 1</h1>
 					<p class="sub-title">Nadčasový pomocník určený na meranie času príchodu zákazníkov.</p>
@@ -13,43 +10,46 @@
 
 				<main>
 					<p>
-						Bonbon brownie sweet gingerbread soufflé. Tart cake ice cream macaroon carrot cake. Cupcake liquorice
-						jelly beans biscuit sweet carrot cake jelly. Chocolate cake macaroon sweet roll. Candy canes gingerbread
-						icing sesame snaps pie soufflé carrot cake muffin pudding. Chocolate cake gummi bears lemon drops
-						chocolate. Donut dragée dragée cake topping. Marzipan danish pie jelly beans. Cake candy marshmallow.
-						Cupcake donut sesame snaps chocolate bar halvah lollipop. Cotton candy tootsie roll wafer jelly ice
-						cream sweet roll bonbon candy canes chupa chups. Tootsie roll sweet cupcake candy tart gummies.
+						Bonbon brownie sweet gingerbread soufflé. Tart cake ice cream macaroon carrot cake. Cupcake
+						liquorice jelly beans biscuit sweet carrot cake jelly. Chocolate cake macaroon sweet roll. Candy
+						canes gingerbread icing sesame snaps pie soufflé carrot cake muffin pudding. Chocolate cake
+						gummi bears lemon drops chocolate. Donut dragée dragée cake topping. Marzipan danish pie jelly
+						beans. Cake candy marshmallow. Cupcake donut sesame snaps chocolate bar halvah lollipop. Cotton
+						candy tootsie roll wafer jelly ice cream sweet roll bonbon candy canes chupa chups. Tootsie roll
+						sweet cupcake candy tart gummies.
 					</p>
 
 					<p>
-						Lollipop pudding marzipan bear claw muffin. Cake donut cake cheesecake jelly-o cupcake. Powder cake
-						marzipan topping jelly pastry gummies. Tootsie roll dragée halvah tootsie roll. Macaroon pastry
-						donut. Muffin bonbon chocolate cake cotton candy cake topping pastry. Marshmallow toffee pastry
-						jelly beans. Sweet roll caramels powder. Caramels biscuit jelly marshmallow sesame snaps lemon
-						drops. Marzipan jelly-o apple pie gingerbread. Lemon drops chupa chups icing pudding liquorice
-						soufflé. Liquorice pudding cookie lollipop donut donut pudding croissant jujubes. Gummies sugar plum
-						dessert sweet soufflé. Marzipan gummi bears cake fruitcake halvah sugar plum carrot cake.
+						Lollipop pudding marzipan bear claw muffin. Cake donut cake cheesecake jelly-o cupcake. Powder
+						cake marzipan topping jelly pastry gummies. Tootsie roll dragée halvah tootsie roll. Macaroon
+						pastry donut. Muffin bonbon chocolate cake cotton candy cake topping pastry. Marshmallow toffee
+						pastry jelly beans. Sweet roll caramels powder. Caramels biscuit jelly marshmallow sesame snaps
+						lemon drops. Marzipan jelly-o apple pie gingerbread. Lemon drops chupa chups icing pudding
+						liquorice soufflé. Liquorice pudding cookie lollipop donut donut pudding croissant jujubes.
+						Gummies sugar plum dessert sweet soufflé. Marzipan gummi bears cake fruitcake halvah sugar plum
+						carrot cake.
 					</p>
 
 					<p>
-						Bonbon brownie sweet gingerbread soufflé. Tart cake ice cream macaroon carrot cake. Cupcake liquorice
-						jelly beans biscuit sweet carrot cake jelly. Chocolate cake macaroon sweet roll. Candy canes gingerbread
-						icing sesame snaps pie soufflé carrot cake muffin pudding. Chocolate cake gummi bears lemon drops
-						chocolate. Donut dragée dragée cake topping. Marzipan danish pie jelly beans. Cake candy marshmallow.
-						Cupcake donut sesame snaps chocolate bar halvah lollipop. Cotton candy tootsie roll wafer jelly ice
-						cream sweet roll bonbon candy canes chupa chups. Tootsie roll sweet cupcake candy tart gummies.
+						Bonbon brownie sweet gingerbread soufflé. Tart cake ice cream macaroon carrot cake. Cupcake
+						liquorice jelly beans biscuit sweet carrot cake jelly. Chocolate cake macaroon sweet roll. Candy
+						canes gingerbread icing sesame snaps pie soufflé carrot cake muffin pudding. Chocolate cake
+						gummi bears lemon drops chocolate. Donut dragée dragée cake topping. Marzipan danish pie jelly
+						beans. Cake candy marshmallow. Cupcake donut sesame snaps chocolate bar halvah lollipop. Cotton
+						candy tootsie roll wafer jelly ice cream sweet roll bonbon candy canes chupa chups. Tootsie roll
+						sweet cupcake candy tart gummies.
 					</p>
 				</main>
 			</div>
 
 			<!-- Active Records -->
 			<div class="screen screen-active-records">
-				<p v-if="activeRecords.length == 0">Pridaj novú položku ...</p>
-				<transition-group
-					class="active-records"
-					name="active-records"
-					tag="div"
-				>
+				<transition name="fade">
+					<p v-if="activeRecords.length == 0">Pridaj nový záznam ...</p>
+				</transition>
+
+				<!-- List of Active Records -->
+				<transition-group class="active-records" name="active-records" tag="div">
 					<active-record
 						v-for="(record, index) in activeRecords"
 						:key="record.id"
@@ -62,15 +62,14 @@
 			</div>
 
 			<!-- Stored Records -->
-			<div
-				class="screen screen-stored-records"
-				:class="{visible: isStoredRecordsScreenVisible}"
-			>
+			<div class="screen screen-stored-records" :class="{ visible: isStoredRecordsScreenVisible }">
 				<h2>Uložené záznamy</h2>
+
 				<div class="buttons">
 					<button @click="copyStoredRecords"><i class="fas fa-copy"></i>Kopírovať</button>
 					<button @click="removeStoredRecords"><i class="fas fa-trash-alt"></i>Vymazať</button>
 				</div>
+
 				<stored-records-table :storedRecords="storedRecords"></stored-records-table>
 			</div>
 		</div>
@@ -99,8 +98,8 @@ export default {
 	},
 	data() {
 		return {
-			isInfoScreenVisible: false,
-			isStoredRecordsScreenVisible: true,
+			isInfoScreenVisible: true,
+			isStoredRecordsScreenVisible: false,
 
 			activeRecords: [],
 			nextRecordID: 1,
@@ -120,10 +119,7 @@ export default {
 			const dateFormatOptions = {
 				timeStyle: "medium"
 			};
-			return new Date(time).toLocaleDateString(
-				"sk-SK",
-				dateFormatOptions
-			);
+			return new Date(time).toLocaleDateString("sk-SK", dateFormatOptions);
 		},
 		_initLocalStorage() {
 			const storageData = localStorage.getItem("timeless-helper-1");
@@ -177,10 +173,7 @@ export default {
 			this.storedRecords.push(newRecord);
 			storageData.nextRecordID++;
 
-			localStorage.setItem(
-				"timeless-helper-1",
-				JSON.stringify(storageData)
-			);
+			localStorage.setItem("timeless-helper-1", JSON.stringify(storageData));
 
 			this.removeActiveRecord(index);
 		},
@@ -213,9 +206,7 @@ export default {
 			document.body.removeChild(textarea);
 		},
 		removeStoredRecords() {
-			const confirm1 = confirm(
-				"Naozaj chceš vymazať všetky uložené záznamy ?"
-			);
+			const confirm1 = confirm("Naozaj chceš vymazať všetky uložené záznamy ?");
 
 			if (confirm1) {
 				this.storedRecords.splice(0, this.storedRecords.length);
@@ -228,10 +219,7 @@ export default {
 		},
 		toggleStoredRecordsScreen() {
 			this.isInfoScreenVisible = false;
-			this.isStoredRecordsScreenVisible = this
-				.isStoredRecordsScreenVisible
-				? false
-				: true;
+			this.isStoredRecordsScreenVisible = this.isStoredRecordsScreenVisible ? false : true;
 		}
 	}
 };
@@ -355,6 +343,19 @@ main p {
 }
 
 /**
+***	FADE TRANSITION		
+*/
+.fade-enter-active,
+.fade-leave-active {
+	transition: all 0.5s ease-in-out;
+}
+.fade-enter,
+.fade-leave-to {
+	opacity: 0;
+	transform: scale(0);
+}
+
+/**
 ***	ACTIVE RECODS - TRANSITIONS		
 */
 .active-records {
@@ -366,7 +367,7 @@ main p {
 .active-records-enter,
 .active-records-leave-to {
 	opacity: 0;
-	transform-origin: center center;
+	transform-origin: top center;
 	transform: scale(0);
 }
 </style>

@@ -11,17 +11,16 @@
 			</button>
 
 			<!-- Add New Active Record Button -->
-			<button
-				class="button save-button"
-				@click="addNewActiveRecord"
-			><i class="fas fa-plus"></i></button>
+			<button class="button save-button" @click="addNewActiveRecord"><i class="fas fa-plus"></i></button>
 
 			<!-- Toggle Stored Records Screen Button -->
 			<button
 				class="button toggle-button toggle-stored-records-button"
 				@click="toggleStoredRecordsScreen"
 				:class="{ active: isStoredRecordsScreenVisible }"
-			><i class="fas fa-database"></i></button>
+			>
+				<i class="fas fa-database"></i>
+			</button>
 		</div>
 	</div>
 </template>
@@ -123,6 +122,10 @@ export default {
 .control-panel .save-button {
 	background: #4caf50;
 	background: linear-gradient(180deg, #8bc34a, #4caf50);
+	transition: all 0.05s linear;
+}
+.control-panel .save-button:active {
+	transform: scale(0.95);
 }
 
 /**

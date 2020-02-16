@@ -1,11 +1,13 @@
 <template>
 	<div class="active-record">
 		<!-- ID -->
-		<div class="id"><strong>{{ id }}</strong></div>
+		<div class="id">
+			<strong>{{ id }}</strong>
+		</div>
 
-		<!-- Dáta -->
+		<!-- Data -->
 		<div class="data">
-			<!-- Veľkosť skupiny -->
+			<!-- Group Size -->
 			<div class="group">
 				<div>
 					<button @click="increaseGroupSize"><i class="fas fa-plus"></i></button>
@@ -14,20 +16,19 @@
 				<span>{{ groupSize }}</span>
 			</div>
 
-			<!-- Čas príchodu -->
+			<!-- Time of arrival -->
 			<div class="time">
 				<span>{{ timeOfArrival | formatTime }}</span>
 			</div>
 		</div>
 
-		<!-- Tlačidlá -->
+		<!-- Buttons - Save & Remove -->
 		<div class="buttons">
 			<button @click="save"><i class="fas fa-check"></i></button>
 			<button @click="remove"><i class="fas fa-times"></i></button>
 		</div>
 	</div>
 </template>
-
 
 <script>
 export default {
@@ -54,10 +55,7 @@ export default {
 			const dateFormatOptions = {
 				timeStyle: "medium"
 			};
-			return new Date(time).toLocaleDateString(
-				"sk-SK",
-				dateFormatOptions
-			);
+			return new Date(time).toLocaleDateString("sk-SK", dateFormatOptions);
 		}
 	},
 	methods: {
@@ -82,7 +80,6 @@ export default {
 	}
 };
 </script>
-
 
 <style scoped>
 /** 

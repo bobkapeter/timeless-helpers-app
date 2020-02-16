@@ -1,10 +1,7 @@
 <template>
 	<div id="app">
 		<div class="view-container">
-			<transition
-				name="fade"
-				mode="out-in"
-			>
+			<transition name="page-fade" mode="out-in">
 				<router-view></router-view>
 			</transition>
 		</div>
@@ -18,15 +15,15 @@ export default {};
 </script>
 
 <style>
-.fade-enter-active,
-.fade-leave-active {
+.page-fade-enter-active,
+.page-fade-leave-active {
 	transition-duration: 0.2s;
 	transition-property: opacity, transform;
 	transition-timing-function: ease;
 }
 
-.fade-enter,
-.fade-leave-active {
+.page-fade-enter,
+.page-fade-leave-active {
 	opacity: 0;
 }
 
