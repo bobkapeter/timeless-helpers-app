@@ -2,10 +2,13 @@
 	<div id="timeless-helper-1">
 		<div class="screens">
 			<!-- Informations -->
-			<div class="screen screen-info" :class="{ visible: isInfoScreenVisible }">
+			<div
+				class="screen screen-info"
+				:class="{ visible: isInfoScreenVisible }"
+			>
 				<header>
 					<h1>Nadčasový Pomocník 1</h1>
-					<p class="sub-title">Nadčasový pomocník určený na meranie času príchodu zákazníkov.</p>
+					<p class="sub-title">Pomocník na meranie toho, kedy a koľko zákaníkov vstúpilo do obslužného systému.</p>
 				</header>
 
 				<main>
@@ -49,7 +52,11 @@
 				</transition>
 
 				<!-- List of Active Records -->
-				<transition-group class="active-records" name="active-records" tag="div">
+				<transition-group
+					class="active-records"
+					name="active-records"
+					tag="div"
+				>
 					<active-record
 						v-for="(record, index) in activeRecords"
 						:key="record.id"
@@ -62,7 +69,10 @@
 			</div>
 
 			<!-- Stored Records -->
-			<div class="screen screen-stored-records" :class="{ visible: isStoredRecordsScreenVisible }">
+			<div
+				class="screen screen-stored-records"
+				:class="{ visible: isStoredRecordsScreenVisible }"
+			>
 				<h2>Uložené záznamy</h2>
 
 				<div class="buttons">
@@ -119,7 +129,10 @@ export default {
 			const dateFormatOptions = {
 				timeStyle: "medium"
 			};
-			return new Date(time).toLocaleDateString("sk-SK", dateFormatOptions);
+			return new Date(time).toLocaleDateString(
+				"sk-SK",
+				dateFormatOptions
+			);
 		},
 		_initLocalStorage() {
 			const storageData = localStorage.getItem("timeless-helper-1");
@@ -173,7 +186,10 @@ export default {
 			this.storedRecords.push(newRecord);
 			storageData.nextRecordID++;
 
-			localStorage.setItem("timeless-helper-1", JSON.stringify(storageData));
+			localStorage.setItem(
+				"timeless-helper-1",
+				JSON.stringify(storageData)
+			);
 
 			this.removeActiveRecord(index);
 		},
@@ -206,7 +222,9 @@ export default {
 			document.body.removeChild(textarea);
 		},
 		removeStoredRecords() {
-			const confirm1 = confirm("Naozaj chceš vymazať všetky uložené záznamy ?");
+			const confirm1 = confirm(
+				"Naozaj chceš vymazať všetky uložené záznamy ?"
+			);
 
 			if (confirm1) {
 				this.storedRecords.splice(0, this.storedRecords.length);
@@ -219,7 +237,10 @@ export default {
 		},
 		toggleStoredRecordsScreen() {
 			this.isInfoScreenVisible = false;
-			this.isStoredRecordsScreenVisible = this.isStoredRecordsScreenVisible ? false : true;
+			this.isStoredRecordsScreenVisible = this
+				.isStoredRecordsScreenVisible
+				? false
+				: true;
 		}
 	}
 };
