@@ -11,7 +11,10 @@
 			</button>
 
 			<!-- Add New Active Record Button -->
-			<button class="button save-button" @click="addNewActiveRecord"><i class="fas fa-plus"></i></button>
+			<button
+				class="button save-button"
+				@click="addNewActiveRecord"
+			><i class="fas fa-plus"></i></button>
 
 			<!-- Toggle Stored Records Screen Button -->
 			<button

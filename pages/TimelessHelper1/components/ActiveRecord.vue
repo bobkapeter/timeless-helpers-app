@@ -48,14 +48,16 @@ export default {
 	},
 	filters: {
 		formatTime(time) {
-			if (!time) {
-				return "";
-			}
+			if (!time) return "";
 
 			const dateFormatOptions = {
 				timeStyle: "medium"
 			};
-			return new Date(time).toLocaleDateString("sk-SK", dateFormatOptions);
+
+			return new Date(time).toLocaleDateString(
+				"sk-SK",
+				dateFormatOptions
+			);
 		}
 	},
 	methods: {

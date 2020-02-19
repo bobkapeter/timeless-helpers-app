@@ -6,12 +6,12 @@
 				class="screen screen-info"
 				:class="{ visible: isInfoScreenVisible }"
 			>
-				<header>
+				<header class="header">
 					<h1>Nadčasový Pomocník 1</h1>
 					<p class="sub-title">Pomocník na meranie toho, kedy a koľko zákaníkov vstúpilo do obslužného systému.</p>
 				</header>
 
-				<main>
+				<main class="description">
 					<p>
 						Bonbon brownie sweet gingerbread soufflé. Tart cake ice cream macaroon carrot cake. Cupcake
 						liquorice jelly beans biscuit sweet carrot cake jelly. Chocolate cake macaroon sweet roll. Candy
@@ -122,13 +122,12 @@ export default {
 	},
 	methods: {
 		_formatTime(time) {
-			if (!time) {
-				return "";
-			}
+			if (!time) return "";
 
 			const dateFormatOptions = {
 				timeStyle: "medium"
 			};
+
 			return new Date(time).toLocaleDateString(
 				"sk-SK",
 				dateFormatOptions
@@ -165,8 +164,7 @@ export default {
 			});
 			this.nextRecordID++;
 		},
-		saveActiveRecord(newRecordData) {
-			const { index, groupSize, timeOfArrival } = newRecordData;
+		saveActiveRecord({ index, groupSize, timeOfArrival }) {
 			let storageData = localStorage.getItem("timeless-helper-1");
 
 			if (!storageData) {
@@ -212,7 +210,6 @@ export default {
 			textarea.value = text;
 			textarea.setAttribute("readonly", "");
 			textarea.style = { position: "absolute", left: "-9999px" };
-
 			document.body.appendChild(textarea);
 
 			textarea.select();
@@ -250,12 +247,6 @@ export default {
 #timeless-helper-1 {
 	position: relative;
 	height: 100vh;
-}
-
-main p {
-	line-height: 1.6em;
-	text-align: justify;
-	padding-bottom: 2em;
 }
 
 /** 
@@ -390,5 +381,20 @@ main p {
 	opacity: 0;
 	transform-origin: top center;
 	transform: scale(0);
+}
+
+/**
+***	MEDIA QUERIES		
+*/
+@media screen and (max-width: 700px) {
+	.screen {
+		padding: 0 2em;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.screen {
+		padding: 0 1em;
+	}
 }
 </style>
