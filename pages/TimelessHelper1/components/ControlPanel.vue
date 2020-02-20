@@ -123,4 +123,25 @@ export default {
 	background: #452087;
 	background: linear-gradient(180deg, #673ab7, #452087);
 }
+
+/**
+***	MEDIA QUERIES
+*/
+@media screen and (max-width: 600px) {
+	.control-panel {
+		height: 60px;
+	}
+	.control-panel .button {
+		width: 40px;
+		height: 40px;
+		font-size: 12px;
+		line-height: 40px;
+		margin: 0 0.4em;
+	}
+	.toggle-button::before {
+		width: 28px;
+		height: 28px;
+		border-width: 1px;
+	}
+}
 </style>

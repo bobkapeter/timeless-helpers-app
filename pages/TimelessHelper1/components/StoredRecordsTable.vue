@@ -1,5 +1,5 @@
 <template>
-	<div class="stored-records">
+	<div class="table-container">
 		<table>
 			<thead>
 				<tr>
@@ -45,13 +45,17 @@ export default {
 </script>
 
 <style scoped>
-.stored-records {
-	max-width: 600px;
+.table-container {
+	width: 100%;
+	overflow: auto;
 	margin: 0 auto;
 }
 
 table {
 	width: 100%;
+	max-width: 600px;
+	min-width: 400px;
+	margin: 0 auto;
 	font-size: 14px;
 }
 
@@ -77,5 +81,14 @@ tbody td {
 
 tbody tr:nth-child(even) {
 	background-color: rgba(255, 255, 255, 0.03);
+}
+
+@media screen and (max-width: 600px) {
+	table th {
+		font-size: 11px;
+	}
+	table {
+		font-size: 11px;
+	}
 }
 </style>

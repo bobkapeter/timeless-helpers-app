@@ -10,10 +10,8 @@
 		<!-- Info -->
 		<template v-slot:info>
 			<header class="header">
-				<h1>Nadčasový Pomocník 1</h1>
-				<p class="sub-title">
-					Pomocník na meranie toho, kedy a koľko zákaníkov vstúpilo do obslužného systému.
-				</p>
+				<h1>Nadčasový Pomocník&nbsp;1</h1>
+				<p class="sub-title">Pomocník na meranie toho, kedy a koľko zákaníkov vstúpilo do obslužného systému.</p>
 			</header>
 
 			<main class="description">

@@ -96,17 +96,19 @@ button {
 
 .header {
 	text-align: center;
-	padding-top: 4em;
-	margin-bottom: 3em;
+	padding-bottom: 2em;
+	margin-bottom: 2em;
+	border-bottom: 1px solid #e1e1e1;
 }
 .header h1 {
 	font-size: 55px;
 	font-weight: 900;
+	padding-top: 1.2em;
 }
 .header .sub-title {
 	max-width: 550px;
 	margin: auto;
-	margin-top: 0.6em;
+	margin-top: 1.2em;
 }
 
 .description p {
@@ -119,7 +121,6 @@ button {
 */
 @media screen and (max-width: 800px) {
 	.header {
-		padding-top: 3em;
 		margin-bottom: 2em;
 	}
 	.header h1 {
@@ -131,23 +132,24 @@ button {
 	.page {
 		padding: 0 2em;
 	}
-	.description p {
-		font-size: 14px;
-	}
 }
 
 @media screen and (max-width: 600px) {
 	.page {
 		padding: 0 1em;
 	}
-	.header h1 {
-		font-size: 8vw;
+	.description p,
+	.header .sub-title {
+		font-size: 14px;
+	}
+	.header .sub-title {
+		max-width: 400px;
 	}
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 400px) {
 	.header h1 {
-		font-size: 14vw;
+		font-size: 12vw;
 	}
 }
 </style>

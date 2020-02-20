@@ -150,7 +150,7 @@ export default {
 	font-size: 55px;
 	font-weight: 900;
 	text-align: center;
-	padding-top: 64px;
+	padding-top: 1.2em;
 	margin-bottom: 0.2em;
 }
 
@@ -220,20 +220,41 @@ export default {
 /**
 ***	MEDIA QUERIES		
 */
+@media screen and (max-width: 800px) {
+	.screen-stored-records h2 {
+		font-size: 7vw;
+	}
+}
 @media screen and (max-width: 700px) {
 	.screen {
-		padding: 0 2em;
+		padding-right: 2em;
+		padding-left: 2em;
+	}
+	.screen-stored-records .buttons {
+		margin-top: 2em;
 	}
 }
 
 @media screen and (max-width: 600px) {
 	.screen {
-		padding: 0 1em;
+		padding-right: 1em;
+		padding-left: 1em;
 	}
+	.screen-active-records {
+		padding-right: 0.5em;
+		padding-left: 0.5em;
+	}
+}
+
+@media screen and (max-width: 450px) {
 	.screen-stored-records .buttons button {
-		display: block;
-		margin: auto;
-		margin-bottom: 0.5em;
+		margin: 0.6em auto;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.screen-stored-records h2 {
+		font-size: 12vw;
 	}
 }
 </style>

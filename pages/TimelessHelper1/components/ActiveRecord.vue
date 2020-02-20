@@ -2,7 +2,7 @@
 	<div class="active-record">
 		<!-- ID -->
 		<div class="id">
-			<strong>{{ id }}</strong>
+			<strong>{{ id }}.</strong>
 		</div>
 
 		<!-- Data -->
@@ -89,6 +89,7 @@ export default {
 */
 .active-record {
 	width: 100%;
+	min-width: 300px;
 	height: 70px;
 	display: flex;
 	background-color: rgb(248, 248, 248);
@@ -103,10 +104,10 @@ export default {
 */
 .active-record .id {
 	width: 100px;
-	font-size: 11px;
 	text-align: center;
 	color: rgb(185, 185, 185);
 	border-right: 1px dotted #ccc;
+	margin-right: 2em;
 }
 .active-record .id strong {
 	display: block;
@@ -129,6 +130,7 @@ export default {
 
 .active-record .data .group {
 	display: flex;
+	width: 150px;
 	height: 70px;
 	align-items: center;
 }
@@ -157,14 +159,15 @@ export default {
 }
 
 .active-record .data .group span {
-	height: 100%;
 	display: block;
+	width: 70px;
+	height: 100%;
 	font-size: 30px;
 	line-height: 70px;
 }
 
 .active-record .data .time span {
-	width: 60px;
+	width: 120px;
 	height: 100%;
 	display: block;
 	font-size: 30px;
@@ -210,5 +213,62 @@ export default {
 }
 .active-record .buttons button:active {
 	transform: scale(0.95);
+}
+
+/** 
+***	MEDIA QUERIES 
+*/
+@media screen and (max-width: 600px) {
+	.active-record .id {
+		width: 60px;
+	}
+	.active-record .data .group {
+		width: auto;
+	}
+	.active-record .data .group div {
+		width: 25px;
+		flex-direction: column;
+	}
+	.active-record .data .group button {
+		width: 25px;
+		height: 25px;
+		line-height: 25px;
+		margin: 0.2em 0;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.active-record {
+		height: 60px;
+	}
+	.active-record .id {
+		border: none;
+		margin-right: 1em;
+	}
+	.active-record .id strong,
+	.active-record .data .group span,
+	.active-record .data .time span {
+		font-size: 20px;
+	}
+
+	.active-record .data .group span {
+		width: 40px;
+	}
+
+	.active-record .data .time span {
+		width: 90px;
+	}
+
+	.active-record .buttons button {
+		width: 25px;
+		height: 25px;
+		line-height: 25px;
+	}
+	.active-record .buttons button:first-of-type {
+		width: 50px;
+		height: 50px;
+		font-size: 16px;
+		line-height: 50px;
+	}
 }
 </style>
