@@ -13,8 +13,12 @@
 			<!-- Active Records -->
 			<div
 				class="screen screen-active-records"
-				:class="{ visible: isInfoScreenVisible }"
+				:class="{ visible: isActiveRecordsScreenVisible }"
 			>
+				<transition name="scale-out">
+					<p v-if="isActiveRecordsEmpty">Pridaj nový záznam ...</p>
+				</transition>
+
 				<slot name="active-records"></slot>
 			</div>
 
@@ -23,7 +27,14 @@
 				class="screen screen-stored-records"
 				:class="{ visible: isStoredRecordsScreenVisible }"
 			>
-				<slot name="strored-records"></slot>
+				<h2>Uložené záznamy</h2>
+
+				<div class="buttons">
+					<button @click="copyStoredRecords"><i class="fas fa-copy"></i>Kopírovať</button>
+					<button @click="removeStoredRecords"><i class="fas fa-trash-alt"></i>Vymazať</button>
+				</div>
+
+				<slot name="stored-records"></slot>
 			</div>
 		</div>
 
@@ -40,7 +51,16 @@ export default {
 	props: {
 		isInfoScreenVisible: Boolean,
 		isActiveRecordsScreenVisible: Boolean,
-		isStoredRecordsScreenVisible: Boolean
+		isStoredRecordsScreenVisible: Boolean,
+		isActiveRecordsEmpty: Boolean
+	},
+	methods: {
+		copyStoredRecords() {
+			this.$emit("copyStoredRecords");
+		},
+		removeStoredRecords() {
+			this.$emit("removeStoredRecords");
+		}
 	}
 };
 </script>
@@ -104,6 +124,14 @@ export default {
 	opacity: 1;
 }
 
+.screen-active-records p {
+	width: 100%;
+	position: absolute;
+	top: 2em;
+	left: 0;
+	text-align: center;
+}
+
 /** 
 ***	SCREEN STORED RECORDS 
 */
@@ -116,5 +144,96 @@ export default {
 }
 .screen-stored-records.visible {
 	transform: translateX(0%);
+}
+
+.screen-stored-records h2 {
+	font-size: 55px;
+	font-weight: 900;
+	text-align: center;
+	padding-top: 64px;
+	margin-bottom: 0.2em;
+}
+
+.screen-stored-records .buttons {
+	max-width: 600px;
+	text-align: center;
+	padding-bottom: 1em;
+	margin: 3em auto 2em auto;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.screen-stored-records .buttons button {
+	cursor: pointer;
+	background-color: rgba(255, 255, 255, 0.1);
+	font-size: 11px;
+	font-weight: bold;
+	font-weight: 700;
+	line-height: 40px;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	padding-right: 3em;
+	margin: 0 0.2em;
+	border: none;
+	border-radius: 40px;
+}
+
+.screen-stored-records .buttons button .fas {
+	width: 40px;
+	height: 40px;
+	background-color: white;
+	color: #452087;
+	font-size: 14px;
+	line-height: 40px;
+	margin-right: 1.5em;
+	border-radius: 50%;
+}
+
+/**
+*** CONTROL PANEL
+*/
+.control-panel-container {
+	width: 100%;
+	max-width: 800px;
+	background-color: white;
+	position: fixed;
+	bottom: 0;
+	left: 50%;
+	z-index: 999999;
+	transform: translateX(-50%);
+	text-align: center;
+	border-top: 2px solid rgba(204, 204, 204, 0.5);
+}
+
+/**
+*** TRANSITION: SCALE OUT		
+*/
+.scale-out-enter-active,
+.scale-out-leave-active {
+	transition: all 0.5s ease-in-out;
+}
+.scale-out-enter,
+.scale-out-leave-to {
+	opacity: 0;
+	transform: scale(0);
+}
+
+/**
+***	MEDIA QUERIES		
+*/
+@media screen and (max-width: 700px) {
+	.screen {
+		padding: 0 2em;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.screen {
+		padding: 0 1em;
+	}
+	.screen-stored-records .buttons button {
+		display: block;
+		margin: auto;
+		margin-bottom: 0.5em;
+	}
 }
 </style>

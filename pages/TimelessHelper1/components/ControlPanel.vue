@@ -1,30 +1,28 @@
 <template>
 	<div class="control-panel">
-		<div class="control-panel-container">
-			<!-- Toggle Info Screen Button -->
-			<button
-				class="button toggle-button toggle-info-button"
-				@click="toggleInfoScreen"
-				:class="{ active: isInfoScreenVisible }"
-			>
-				<i class="fas fa-question"></i>
-			</button>
+		<!-- Toggle Info Screen Button -->
+		<button
+			class="button toggle-button toggle-info-button"
+			@click="toggleInfoScreen"
+			:class="{ active: isInfoScreenVisible }"
+		>
+			<i class="fas fa-question"></i>
+		</button>
 
-			<!-- Add New Active Record Button -->
-			<button
-				class="button save-button"
-				@click="addNewActiveRecord"
-			><i class="fas fa-plus"></i></button>
+		<!-- Add New Active Record Button -->
+		<button
+			class="button save-button"
+			@click="addNewActiveRecord"
+		><i class="fas fa-plus"></i></button>
 
-			<!-- Toggle Stored Records Screen Button -->
-			<button
-				class="button toggle-button toggle-stored-records-button"
-				@click="toggleStoredRecordsScreen"
-				:class="{ active: isStoredRecordsScreenVisible }"
-			>
-				<i class="fas fa-database"></i>
-			</button>
-		</div>
+		<!-- Toggle Stored Records Screen Button -->
+		<button
+			class="button toggle-button toggle-stored-records-button"
+			@click="toggleStoredRecordsScreen"
+			:class="{ active: isStoredRecordsScreenVisible }"
+		>
+			<i class="fas fa-database"></i>
+		</button>
 	</div>
 </template>
 
@@ -53,19 +51,6 @@ export default {
 *** CONTROL PANEL
 */
 .control-panel {
-	width: 100%;
-	max-width: 800px;
-	background-color: white;
-	position: fixed;
-	bottom: 0;
-	left: 50%;
-	z-index: 999999;
-	transform: translateX(-50%);
-	text-align: center;
-	border-top: 2px solid rgba(204, 204, 204, 0.5);
-}
-
-.control-panel-container {
 	height: 80px;
 	display: flex;
 	align-items: center;

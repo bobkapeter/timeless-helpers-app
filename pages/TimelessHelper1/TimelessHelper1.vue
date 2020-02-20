@@ -1,107 +1,99 @@
 <template>
-	<div id="timeless-helper-1">
-		<div class="screens">
-			<!-- Informations -->
-			<div
-				class="screen screen-info"
-				:class="{ visible: isInfoScreenVisible }"
+	<helper-layout
+		:isInfoScreenVisible="isInfoScreenVisible"
+		:isActiveRecordsScreenVisible="true"
+		:isStoredRecordsScreenVisible="isStoredRecordsScreenVisible"
+		:isActiveRecordsEmpty="activeRecords.length === 0"
+		@copyStoredRecords="copyStoredRecords"
+		@removeStoredRecords="removeStoredRecords"
+	>
+		<!-- Info -->
+		<template v-slot:info>
+			<header class="header">
+				<h1>Nadčasový Pomocník 1</h1>
+				<p class="sub-title">
+					Pomocník na meranie toho, kedy a koľko zákaníkov vstúpilo do obslužného systému.
+				</p>
+			</header>
+
+			<main class="description">
+				<p>
+					Bonbon brownie sweet gingerbread soufflé. Tart cake ice cream macaroon carrot cake. Cupcake
+					liquorice jelly beans biscuit sweet carrot cake jelly. Chocolate cake macaroon sweet roll. Candy
+					canes gingerbread icing sesame snaps pie soufflé carrot cake muffin pudding. Chocolate cake gummi
+					bears lemon drops chocolate. Donut dragée dragée cake topping. Marzipan danish pie jelly beans. Cake
+					candy marshmallow. Cupcake donut sesame snaps chocolate bar halvah lollipop. Cotton candy tootsie
+					roll wafer jelly ice cream sweet roll bonbon candy canes chupa chups. Tootsie roll sweet cupcake
+					candy tart gummies.
+				</p>
+
+				<p>
+					Lollipop pudding marzipan bear claw muffin. Cake donut cake cheesecake jelly-o cupcake. Powder cake
+					marzipan topping jelly pastry gummies. Tootsie roll dragée halvah tootsie roll. Macaroon pastry
+					donut. Muffin bonbon chocolate cake cotton candy cake topping pastry. Marshmallow toffee pastry
+					jelly beans. Sweet roll caramels powder. Caramels biscuit jelly marshmallow sesame snaps lemon
+					drops. Marzipan jelly-o apple pie gingerbread. Lemon drops chupa chups icing pudding liquorice
+					soufflé. Liquorice pudding cookie lollipop donut donut pudding croissant jujubes. Gummies sugar plum
+					dessert sweet soufflé. Marzipan gummi bears cake fruitcake halvah sugar plum carrot cake.
+				</p>
+
+				<p>
+					Bonbon brownie sweet gingerbread soufflé. Tart cake ice cream macaroon carrot cake. Cupcake
+					liquorice jelly beans biscuit sweet carrot cake jelly. Chocolate cake macaroon sweet roll. Candy
+					canes gingerbread icing sesame snaps pie soufflé carrot cake muffin pudding. Chocolate cake gummi
+					bears lemon drops chocolate. Donut dragée dragée cake topping. Marzipan danish pie jelly beans. Cake
+					candy marshmallow. Cupcake donut sesame snaps chocolate bar halvah lollipop. Cotton candy tootsie
+					roll wafer jelly ice cream sweet roll bonbon candy canes chupa chups. Tootsie roll sweet cupcake
+					candy tart gummies.
+				</p>
+			</main>
+		</template>
+
+		<!-- Active Records -->
+		<template v-slot:active-records>
+			<transition-group
+				class="active-records"
+				name="active-records"
+				tag="div"
 			>
-				<header class="header">
-					<h1>Nadčasový Pomocník 1</h1>
-					<p class="sub-title">Pomocník na meranie toho, kedy a koľko zákaníkov vstúpilo do obslužného systému.</p>
-				</header>
+				<active-record
+					v-for="(record, index) in activeRecords"
+					:key="record.id"
+					:id="record.id"
+					:index="index"
+					@save="saveActiveRecord"
+					@remove="removeActiveRecord"
+				></active-record>
+			</transition-group>
+		</template>
 
-				<main class="description">
-					<p>
-						Bonbon brownie sweet gingerbread soufflé. Tart cake ice cream macaroon carrot cake. Cupcake
-						liquorice jelly beans biscuit sweet carrot cake jelly. Chocolate cake macaroon sweet roll. Candy
-						canes gingerbread icing sesame snaps pie soufflé carrot cake muffin pudding. Chocolate cake
-						gummi bears lemon drops chocolate. Donut dragée dragée cake topping. Marzipan danish pie jelly
-						beans. Cake candy marshmallow. Cupcake donut sesame snaps chocolate bar halvah lollipop. Cotton
-						candy tootsie roll wafer jelly ice cream sweet roll bonbon candy canes chupa chups. Tootsie roll
-						sweet cupcake candy tart gummies.
-					</p>
-
-					<p>
-						Lollipop pudding marzipan bear claw muffin. Cake donut cake cheesecake jelly-o cupcake. Powder
-						cake marzipan topping jelly pastry gummies. Tootsie roll dragée halvah tootsie roll. Macaroon
-						pastry donut. Muffin bonbon chocolate cake cotton candy cake topping pastry. Marshmallow toffee
-						pastry jelly beans. Sweet roll caramels powder. Caramels biscuit jelly marshmallow sesame snaps
-						lemon drops. Marzipan jelly-o apple pie gingerbread. Lemon drops chupa chups icing pudding
-						liquorice soufflé. Liquorice pudding cookie lollipop donut donut pudding croissant jujubes.
-						Gummies sugar plum dessert sweet soufflé. Marzipan gummi bears cake fruitcake halvah sugar plum
-						carrot cake.
-					</p>
-
-					<p>
-						Bonbon brownie sweet gingerbread soufflé. Tart cake ice cream macaroon carrot cake. Cupcake
-						liquorice jelly beans biscuit sweet carrot cake jelly. Chocolate cake macaroon sweet roll. Candy
-						canes gingerbread icing sesame snaps pie soufflé carrot cake muffin pudding. Chocolate cake
-						gummi bears lemon drops chocolate. Donut dragée dragée cake topping. Marzipan danish pie jelly
-						beans. Cake candy marshmallow. Cupcake donut sesame snaps chocolate bar halvah lollipop. Cotton
-						candy tootsie roll wafer jelly ice cream sweet roll bonbon candy canes chupa chups. Tootsie roll
-						sweet cupcake candy tart gummies.
-					</p>
-				</main>
-			</div>
-
-			<!-- Active Records -->
-			<div class="screen screen-active-records">
-				<transition name="fade">
-					<p v-if="activeRecords.length == 0">Pridaj nový záznam ...</p>
-				</transition>
-
-				<!-- List of Active Records -->
-				<transition-group
-					class="active-records"
-					name="active-records"
-					tag="div"
-				>
-					<active-record
-						v-for="(record, index) in activeRecords"
-						:key="record.id"
-						:id="record.id"
-						:index="index"
-						@save="saveActiveRecord"
-						@remove="removeActiveRecord"
-					></active-record>
-				</transition-group>
-			</div>
-
-			<!-- Stored Records -->
-			<div
-				class="screen screen-stored-records"
-				:class="{ visible: isStoredRecordsScreenVisible }"
-			>
-				<h2>Uložené záznamy</h2>
-
-				<div class="buttons">
-					<button @click="copyStoredRecords"><i class="fas fa-copy"></i>Kopírovať</button>
-					<button @click="removeStoredRecords"><i class="fas fa-trash-alt"></i>Vymazať</button>
-				</div>
-
-				<stored-records-table :storedRecords="storedRecords"></stored-records-table>
-			</div>
-		</div>
+		<!-- Stored Records -->
+		<template v-slot:stored-records>
+			<stored-records-table :storedRecords="storedRecords"></stored-records-table>
+		</template>
 
 		<!-- Control Panel -->
-		<control-panel
-			:isInfoScreenVisible="isInfoScreenVisible"
-			:isStoredRecordsScreenVisible="isStoredRecordsScreenVisible"
-			@toggleInfoScreen="toggleInfoScreen"
-			@addNewActiveRecord="addNewActiveRecord"
-			@toggleStoredRecordsScreen="toggleStoredRecordsScreen"
-		></control-panel>
-	</div>
+		<template v-slot:control-panel>
+			<control-panel
+				:isInfoScreenVisible="isInfoScreenVisible"
+				:isStoredRecordsScreenVisible="isStoredRecordsScreenVisible"
+				@toggleInfoScreen="toggleInfoScreen"
+				@addNewActiveRecord="addNewActiveRecord"
+				@toggleStoredRecordsScreen="toggleStoredRecordsScreen"
+			></control-panel>
+		</template>
+	</helper-layout>
 </template>
 
 <script>
+import HelperLayout from "../components/HelperLayout";
 import ActiveRecord from "./components/ActiveRecord";
 import StoredRecordsTable from "./components/StoredRecordsTable";
 import ControlPanel from "./components/ControlPanel";
 
 export default {
 	components: {
+		HelperLayout,
 		ActiveRecord,
 		StoredRecordsTable,
 		ControlPanel
@@ -244,129 +236,6 @@ export default {
 </script>
 
 <style scoped>
-#timeless-helper-1 {
-	position: relative;
-	height: 100vh;
-}
-
-/** 
-***	SCREENS 
-*/
-.screens {
-	height: 100vh;
-	overflow: hidden;
-	position: relative;
-}
-.screen {
-	height: 100%;
-	position: relative;
-	overflow: auto;
-	padding: 0px 3em;
-	padding-bottom: 100px;
-	box-sizing: border-box;
-	transition: transform 0.5s ease-in-out;
-}
-
-.screen-info,
-.screen-stored-records {
-	width: 100%;
-	position: absolute;
-	top: 0;
-	z-index: 2;
-}
-
-/** 
-***	SCREEN INFO 
-*/
-.screen-info {
-	left: 0;
-	z-index: 3;
-	transform: translateX(-100%);
-	background: rgb(248, 248, 248);
-}
-.screen-info.visible {
-	transform: translateX(0%);
-}
-
-/** 
-***	SCREEN ACTIVE RECORDS 
-*/
-.screen-active-records p {
-	width: 100%;
-	position: absolute;
-	top: 2em;
-	left: 0;
-	text-align: center;
-}
-
-/** 
-***	SCREEN STORED RECORDS 
-*/
-.screen-stored-records {
-	background: #452087;
-	right: 0;
-	z-index: 2;
-	transform: translateX(100%);
-	color: white;
-}
-.screen-stored-records.visible {
-	transform: translateX(0%);
-}
-.screen-stored-records h2 {
-	font-size: 55px;
-	font-weight: 900;
-	text-align: center;
-	padding-top: 64px;
-	margin-bottom: 0.2em;
-}
-
-.screen-stored-records .buttons {
-	max-width: 600px;
-	text-align: center;
-	padding-bottom: 1em;
-	margin: 3em auto 2em auto;
-	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.screen-stored-records .buttons button {
-	cursor: pointer;
-	background-color: rgba(255, 255, 255, 0.1);
-	font-size: 11px;
-	font-weight: bold;
-	font-weight: 700;
-	line-height: 40px;
-	text-transform: uppercase;
-	letter-spacing: 0.06em;
-	padding-right: 3em;
-	margin: 0 0.2em;
-	border: none;
-	border-radius: 40px;
-}
-
-.screen-stored-records .buttons button .fas {
-	width: 40px;
-	height: 40px;
-	background-color: white;
-	color: #452087;
-	font-size: 14px;
-	line-height: 40px;
-	margin-right: 1.5em;
-	border-radius: 50%;
-}
-
-/**
-***	FADE TRANSITION		
-*/
-.fade-enter-active,
-.fade-leave-active {
-	transition: all 0.5s ease-in-out;
-}
-.fade-enter,
-.fade-leave-to {
-	opacity: 0;
-	transform: scale(0);
-}
-
 /**
 ***	ACTIVE RECODS - TRANSITIONS		
 */
@@ -381,28 +250,5 @@ export default {
 	opacity: 0;
 	transform-origin: top center;
 	transform: scale(0);
-}
-
-/**
-***	MEDIA QUERIES		
-*/
-@media screen and (max-width: 700px) {
-	.screen {
-		padding: 0 2em;
-	}
-}
-
-@media screen and (max-width: 600px) {
-	.screen {
-		padding: 0 1em;
-	}
-}
-
-@media screen and (max-width: 600px) {
-	.screen-stored-records .buttons button {
-		display: block;
-		margin: auto;
-		margin-bottom: 0.5em;
-	}
 }
 </style>
