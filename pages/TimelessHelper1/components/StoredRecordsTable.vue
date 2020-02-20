@@ -9,7 +9,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="record in storedRecords" :key="record.id">
+				<tr
+					v-for="record in storedRecords"
+					:key="record.id"
+				>
 					<td>{{ record.id }}.</td>
 					<td>{{ record.timeOfArrival | formatTime }}</td>
 					<td>{{ record.groupSize }}</td>
@@ -26,14 +29,16 @@ export default {
 	},
 	filters: {
 		formatTime(time) {
-			if (!time) {
-				return "";
-			}
+			if (!time) return "";
 
 			const dateFormatOptions = {
 				timeStyle: "medium"
 			};
-			return new Date(time).toLocaleDateString("sk-SK", dateFormatOptions);
+
+			return new Date(time).toLocaleDateString(
+				"sk-SK",
+				dateFormatOptions
+			);
 		}
 	}
 };

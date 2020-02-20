@@ -397,4 +397,12 @@ export default {
 		padding: 0 1em;
 	}
 }
+
+@media screen and (max-width: 600px) {
+	.screen-stored-records .buttons button {
+		display: block;
+		margin: auto;
+		margin-bottom: 0.5em;
+	}
+}
 </style>

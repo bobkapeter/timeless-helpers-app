@@ -164,6 +164,7 @@ export default {
 }
 
 .active-record .data .time span {
+	width: 60px;
 	height: 100%;
 	display: block;
 	font-size: 30px;
